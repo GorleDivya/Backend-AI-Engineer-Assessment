@@ -37,19 +37,12 @@ python extract.py
 python evaluate.py
 How to run this program
 
-## Extracted Fields
-The system extracts the following shipment details:
-- product_line
-- origin_port_code
-- origin_port_name
-- destination_port_code
-- destination_port_name
-- incoterm
-- cargo_weight_kg
-- cargo_cbm
-- is_dangerous
-Overall accuracy is calculated as:
-Total Correct Fields / Total Fields
+## Files
+extract.py: main pipeline (load emails → extract → validate → write output.json)
+evaluate.py: computes accuracy metrics from ground_truth.json vs output.json
+schemas.py: Pydantic models (input + extraction schema)
+prompts.py: prompt versions (v1 → v2 → v3)
+output.json: generated predictions for 50 emails
 
 How it works
 LLM extraction (Groq): Calls Groq Chat Completions with temperature=0 for deterministic outputs and asks the model to return a single JSON object for the required schema.
